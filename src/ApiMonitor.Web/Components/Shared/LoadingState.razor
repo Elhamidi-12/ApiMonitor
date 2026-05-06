@@ -1,0 +1,11 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<section class="am-state-card am-loading-state" aria-live="polite" aria-busy="true">
+    <div class="am-loading-spinner" aria-hidden="true"></div>
+    <p>@Message</p>
+</section>
+
+@code {
+    [Parameter]
+    public string Message { get; set; } = "Loading...";
+}

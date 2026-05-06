@@ -1,0 +1,26 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<div class="am-search-box">
+    <label class="am-visually-hidden" for="@Id">@Label</label>
+    <input id="@Id" type="search" value="@Value" @oninput="HandleInput" placeholder="@Placeholder" />
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "search-box";
+
+    [Parameter]
+    public string Label { get; set; } = "Search";
+
+    [Parameter]
+    public string Placeholder { get; set; } = "Search...";
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
+
+    private Task HandleInput(ChangeEventArgs args)
+        => ValueChanged.InvokeAsync(args.Value?.ToString());
+}

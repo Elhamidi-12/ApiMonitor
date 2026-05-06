@@ -1,0 +1,35 @@
+:root {
+  --bs-primary: var(--am-color-primary);
+  --bs-success: var(--am-status-healthy-text);
+  --bs-warning: var(--am-status-slow-text);
+  --bs-danger: var(--am-status-down-text);
+  --bs-border-radius: 0.625rem;
+  --bs-body-font-family: var(--am-font-family);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--am-color-primary);
+  --bs-btn-border-color: var(--am-color-primary);
+  --bs-btn-hover-bg: var(--am-color-primary-hover);
+  --bs-btn-hover-border-color: var(--am-color-primary-hover);
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem var(--am-surface), 0 0 0 0.25rem var(--am-color-primary);
+}
+
+.form-control,
+.form-select {
+  border-radius: var(--am-radius-md);
+  min-height: 42px;
+}
+
+.card {
+  border-color: var(--am-border);
+  border-radius: var(--am-radius-lg);
+  box-shadow: var(--am-shadow-sm);
+}

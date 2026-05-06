@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <PackageReference Include="Blazorise" Version="2.1.2" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="2.1.2" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ApiMonitor.Application\ApiMonitor.Application.csproj" />
     <ProjectReference Include="..\ApiMonitor.Infrastructure\ApiMonitor.Infrastructure.csproj" />
     <ProjectReference Include="..\ApiMonitor.Domain\ApiMonitor.Domain.csproj" />

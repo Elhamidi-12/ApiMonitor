@@ -1,0 +1,25 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<section class="am-state-card am-empty-state">
+    <h2>@Title</h2>
+    <p>@Description</p>
+
+    @if (!string.IsNullOrWhiteSpace(ActionText) && !string.IsNullOrWhiteSpace(ActionHref))
+    {
+        <a class="am-state-action" href="@ActionHref">@ActionText</a>
+    }
+</section>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "No data available";
+
+    [Parameter]
+    public string Description { get; set; } = "There is nothing to show yet.";
+
+    [Parameter]
+    public string? ActionText { get; set; }
+
+    [Parameter]
+    public string? ActionHref { get; set; }
+}

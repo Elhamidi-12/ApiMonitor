@@ -1,30 +1,36 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">ApiMonitor.Web</a>
-    </div>
-</div>
+@using Microsoft.AspNetCore.Components.Routing
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<nav class="am-nav" aria-label="Primary">
+    <NavLink class="am-nav-link" href="dashboard" @onclick="NotifyNavigate">
+        <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+        <span>Dashboard</span>
+    </NavLink>
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+    <NavLink class="am-nav-link" href="apis" @onclick="NotifyNavigate">
+        <i class="fa-solid fa-plug" aria-hidden="true"></i>
+        <span>APIs</span>
+    </NavLink>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
+    <NavLink class="am-nav-link" href="logs" @onclick="NotifyNavigate">
+        <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+        <span>Logs</span>
+    </NavLink>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    <NavLink class="am-nav-link" href="alerts" @onclick="NotifyNavigate">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <span>Alerts</span>
+    </NavLink>
 
+    <NavLink class="am-nav-link" href="settings" @onclick="NotifyNavigate">
+        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        <span>Settings</span>
+    </NavLink>
+</nav>
+
+@code {
+    [Parameter]
+    public EventCallback OnNavigate { get; set; }
+
+    private Task NotifyNavigate()
+        => OnNavigate.InvokeAsync();
+}
