@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ApiMonitor.Application/ApiMonitor.Application.csproj" />
+    <Project Path="src/ApiMonitor.Domain/ApiMonitor.Domain.csproj" />
+    <Project Path="src/ApiMonitor.Infrastructure/ApiMonitor.Infrastructure.csproj" />
+    <Project Path="src/ApiMonitor.Web/ApiMonitor.Web.csproj" />
+  </Folder>
+</Solution>
