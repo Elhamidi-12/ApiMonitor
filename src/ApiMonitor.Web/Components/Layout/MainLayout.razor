@@ -1,23 +1,69 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+<div class="am-shell">
+    <aside class="am-sidebar @(sidebarOpen ? "is-open" : null)">
+        <div class="am-sidebar-header">
+            <div class="am-brand-mark" aria-hidden="true">AM</div>
+            <div>
+                <strong>ApiMonitor</strong>
+                <p>Enterprise Monitor</p>
+            </div>
         </div>
+        <NavMenu OnNavigate="HandleNavigate" />
+    </aside>
 
-        <article class="content px-4">
+    <div class="am-overlay @(sidebarOpen ? "is-open" : null)" @onclick="CloseSidebar"></div>
+
+    <div class="am-main">
+        <header class="am-topbar">
+            <button class="am-mobile-toggle" type="button" @onclick="ToggleSidebar" aria-label="Open navigation menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="am-topbar-title">
+                <strong>Operations Console</strong>
+                <span>System Status and API Health</span>
+            </div>
+
+            <div class="am-topbar-actions">
+                <button type="button" class="am-topbar-btn @(isThemePlaceholderOn ? "is-active" : null)" title="Theme toggle placeholder" @onclick="ToggleThemePlaceholder">
+                    Theme
+                </button>
+                <button type="button" class="am-topbar-btn @(isUserMenuPlaceholderOpen ? "is-active" : null)" title="User menu placeholder" @onclick="ToggleUserMenuPlaceholder">
+                    User
+                </button>
+            </div>
+        </header>
+
+        <main class="am-content">
             @Body
-        </article>
-    </main>
+        </main>
+    </div>
 </div>
 
 <div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.
     <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    <span class="dismiss">x</span>
 </div>
+
+@code {
+    private bool sidebarOpen;
+    private bool isThemePlaceholderOn;
+    private bool isUserMenuPlaceholderOpen;
+
+    private void ToggleSidebar()
+        => sidebarOpen = !sidebarOpen;
+
+    private void CloseSidebar()
+        => sidebarOpen = false;
+
+    private void HandleNavigate()
+        => sidebarOpen = false;
+
+    private void ToggleThemePlaceholder()
+        => isThemePlaceholderOn = !isThemePlaceholderOn;
+
+    private void ToggleUserMenuPlaceholder()
+        => isUserMenuPlaceholderOpen = !isUserMenuPlaceholderOpen;
+}
