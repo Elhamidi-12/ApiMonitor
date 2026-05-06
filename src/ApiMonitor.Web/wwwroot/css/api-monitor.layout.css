@@ -1,0 +1,19 @@
+html,
+body {
+  font-family: var(--am-font-family);
+  background-color: var(--am-page-bg);
+  color: var(--am-text);
+}
+
+a,
+.btn-link {
+  color: var(--am-color-primary);
+}
+
+.content {
+  padding-top: 1.1rem;
+}
+
+h1:focus {
+  outline: none;
+}
