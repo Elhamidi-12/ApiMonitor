@@ -1,0 +1,10 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<div class="am-filter-bar" role="region" aria-label="Filter options">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

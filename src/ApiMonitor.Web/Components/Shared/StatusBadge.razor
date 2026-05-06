@@ -1,0 +1,20 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<span class="am-status-badge @BadgeClass" title="@Status">
+    <span class="am-status-dot" aria-hidden="true"></span>
+    @Status
+</span>
+
+@code {
+    [Parameter]
+    public string Status { get; set; } = "Unknown";
+
+    private string BadgeClass => Status.Trim().ToLowerInvariant() switch
+    {
+        "healthy" => "is-healthy",
+        "slow" => "is-slow",
+        "down" => "is-down",
+        "disabled" => "is-disabled",
+        _ => "is-unknown"
+    };
+}

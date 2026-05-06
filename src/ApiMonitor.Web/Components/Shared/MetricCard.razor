@@ -1,0 +1,34 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<article class="am-metric-card @IntentClass">
+    <header>
+        <h2>@Label</h2>
+    </header>
+    <p class="am-metric-value">@Value</p>
+    @if (!string.IsNullOrWhiteSpace(HelperText))
+    {
+        <p class="am-metric-helper">@HelperText</p>
+    }
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Label { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Value { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? HelperText { get; set; }
+
+    [Parameter]
+    public string Intent { get; set; } = "default";
+
+    private string IntentClass => Intent.Trim().ToLowerInvariant() switch
+    {
+        "success" => "is-success",
+        "warning" => "is-warning",
+        "danger" => "is-danger",
+        _ => string.Empty
+    };
+}

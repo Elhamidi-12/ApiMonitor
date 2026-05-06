@@ -37,3 +37,223 @@
 .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Shared Components (AM-015) */
+.am-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--am-space-4);
+  margin-bottom: var(--am-space-6);
+}
+
+.am-page-header-copy h1 {
+  margin: 0;
+  font-size: var(--am-font-2xl);
+}
+
+.am-page-header-copy p {
+  margin: var(--am-space-2) 0 0;
+  color: var(--am-text-muted);
+}
+
+.am-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--am-space-2);
+}
+
+.am-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--am-space-2);
+  border-radius: var(--am-radius-pill);
+  padding: 0.2rem 0.6rem;
+  font-size: var(--am-font-xs);
+  font-weight: 700;
+}
+
+.am-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.am-status-badge.is-healthy { background: var(--am-status-healthy-bg); color: var(--am-status-healthy-text); }
+.am-status-badge.is-slow { background: var(--am-status-slow-bg); color: var(--am-status-slow-text); }
+.am-status-badge.is-down { background: var(--am-status-down-bg); color: var(--am-status-down-text); }
+.am-status-badge.is-unknown { background: var(--am-status-unknown-bg); color: var(--am-status-unknown-text); }
+.am-status-badge.is-disabled { background: var(--am-status-disabled-bg); color: var(--am-status-disabled-text); }
+
+.am-metric-card {
+  border: 1px solid var(--am-border);
+  border-radius: var(--am-radius-lg);
+  background: var(--am-surface);
+  padding: var(--am-space-4);
+  box-shadow: var(--am-shadow-sm);
+}
+
+.am-metric-card h2 {
+  margin: 0;
+  font-size: var(--am-font-sm);
+  color: var(--am-text-muted);
+}
+
+.am-metric-value {
+  margin: var(--am-space-2) 0 0;
+  font-size: var(--am-font-3xl);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.am-metric-helper {
+  margin: var(--am-space-2) 0 0;
+  color: var(--am-text-muted);
+  font-size: var(--am-font-sm);
+}
+
+.am-metric-card.is-success .am-metric-value { color: var(--am-status-healthy-text); }
+.am-metric-card.is-warning .am-metric-value { color: var(--am-status-slow-text); }
+.am-metric-card.is-danger .am-metric-value { color: var(--am-status-down-text); }
+
+.am-state-card {
+  border: 1px dashed var(--am-border-strong);
+  border-radius: var(--am-radius-lg);
+  background: var(--am-surface);
+  padding: var(--am-space-6);
+}
+
+.am-state-card h2 {
+  margin-top: 0;
+}
+
+.am-state-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0 var(--am-space-3);
+  border-radius: var(--am-radius-md);
+  border: 1px solid var(--am-color-primary);
+  background: var(--am-color-primary);
+  color: #fff;
+  font-size: var(--am-font-sm);
+  text-decoration: none;
+}
+
+.am-state-action.am-danger {
+  background: var(--am-status-down-text);
+  border-color: var(--am-status-down-text);
+}
+
+.am-loading-state {
+  display: flex;
+  align-items: center;
+  gap: var(--am-space-3);
+}
+
+.am-loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--am-border-strong);
+  border-top-color: var(--am-color-primary);
+  border-radius: 50%;
+  animation: am-spin 1s linear infinite;
+}
+
+@keyframes am-spin {
+  to { transform: rotate(360deg); }
+}
+
+.am-error-state {
+  border-style: solid;
+  border-color: color-mix(in oklab, var(--am-status-down-text) 35%, var(--am-border));
+}
+
+.am-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.45);
+  z-index: var(--am-z-overlay);
+}
+
+.am-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--am-z-modal);
+  width: min(28rem, calc(100vw - 2rem));
+  background: var(--am-surface);
+  border: 1px solid var(--am-border);
+  border-radius: var(--am-radius-xl);
+  padding: var(--am-space-5);
+  box-shadow: var(--am-shadow-lg);
+}
+
+.am-dialog h2 {
+  margin-top: 0;
+}
+
+.am-dialog-actions,
+.am-form-actions,
+.am-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--am-space-2);
+}
+
+.am-search-box input {
+  width: min(22rem, 100%);
+  min-height: 2.5rem;
+  border: 1px solid var(--am-border-strong);
+  border-radius: var(--am-radius-md);
+  background: var(--am-surface);
+  color: var(--am-text);
+  padding: 0 var(--am-space-3);
+}
+
+.am-search-box input:focus {
+  outline: none;
+  border-color: var(--am-color-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in oklab, var(--am-color-primary) 25%, transparent);
+}
+
+.am-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.am-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--am-space-4);
+}
+
+.am-panel {
+  border: 1px solid var(--am-border);
+  border-radius: var(--am-radius-lg);
+  background: var(--am-surface);
+  box-shadow: var(--am-shadow-sm);
+  padding: var(--am-space-4);
+}
+
+@media (max-width: 1100px) {
+  .am-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .am-metric-grid {
+    grid-template-columns: 1fr;
+  }
+}

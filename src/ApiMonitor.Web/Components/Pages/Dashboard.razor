@@ -2,5 +2,50 @@
 
 <PageTitle>Dashboard</PageTitle>
 
-<h1>Dashboard</h1>
-<p>Dashboard page placeholder for AM-014 shell navigation.</p>
+<PageHeader Title="Dashboard" Description="Real-time health and latency overview for monitored APIs.">
+    <Actions>
+        <a class="am-state-action" href="/apis">View APIs</a>
+    </Actions>
+</PageHeader>
+
+<section class="am-metric-grid">
+    <MetricCard Label="Total APIs" Value="12" HelperText="All monitored endpoints" />
+    <MetricCard Label="Healthy" Value="9" HelperText="Responding normally" Intent="success" />
+    <MetricCard Label="Slow" Value="2" HelperText="Above latency threshold" Intent="warning" />
+    <MetricCard Label="Down" Value="1" HelperText="Needs attention" Intent="danger" />
+</section>
+
+<section class="am-panel" style="margin-top: var(--am-space-6);">
+    <PageHeader Title="Current Status" Description="Latest known status for each critical endpoint." />
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>API</th>
+                <th>Status</th>
+                <th>Latency</th>
+                <th>Last Check</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Auth API</td>
+                <td><StatusBadge Status="Healthy" /></td>
+                <td>120 ms</td>
+                <td>12s ago</td>
+            </tr>
+            <tr>
+                <td>Orders API</td>
+                <td><StatusBadge Status="Slow" /></td>
+                <td>840 ms</td>
+                <td>18s ago</td>
+            </tr>
+            <tr>
+                <td>Billing API</td>
+                <td><StatusBadge Status="Down" /></td>
+                <td>Timeout</td>
+                <td>32s ago</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

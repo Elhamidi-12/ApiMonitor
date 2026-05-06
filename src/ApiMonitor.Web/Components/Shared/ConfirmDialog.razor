@@ -1,0 +1,41 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+@if (IsOpen)
+{
+    <div class="am-dialog-backdrop" @onclick="Cancel"></div>
+    <section class="am-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <h2 id="confirm-title">@Title</h2>
+        <p>@Message</p>
+        <div class="am-dialog-actions">
+            <button type="button" class="am-topbar-btn" @onclick="Cancel">@CancelText</button>
+            <button type="button" class="am-state-action am-danger" @onclick="Confirm">@ConfirmText</button>
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter]
+    public bool IsOpen { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "Confirm action";
+
+    [Parameter]
+    public string Message { get; set; } = "Are you sure?";
+
+    [Parameter]
+    public string ConfirmText { get; set; } = "Confirm";
+
+    [Parameter]
+    public string CancelText { get; set; } = "Cancel";
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    private Task Confirm() => OnConfirm.InvokeAsync();
+
+    private Task Cancel() => OnCancel.InvokeAsync();
+}

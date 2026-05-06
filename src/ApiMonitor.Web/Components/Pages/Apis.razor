@@ -2,5 +2,84 @@
 
 <PageTitle>APIs</PageTitle>
 
-<h1>APIs</h1>
-<p>API management page placeholder for AM-014 shell navigation.</p>
+<PageHeader Title="APIs" Description="Manage monitored endpoints, methods, and monitoring status.">
+    <Actions>
+        <a class="am-state-action" href="/apis/create">Add API</a>
+    </Actions>
+</PageHeader>
+
+<FilterBar>
+    <SearchBox Id="api-search" Label="Search APIs" Placeholder="Search by name or URL..." Value="@searchTerm" ValueChanged="OnSearchChanged" />
+
+    <select class="am-topbar-btn" @bind="statusFilter" aria-label="Status filter">
+        <option value="all">All statuses</option>
+        <option value="healthy">Healthy</option>
+        <option value="slow">Slow</option>
+        <option value="down">Down</option>
+        <option value="disabled">Disabled</option>
+    </select>
+</FilterBar>
+
+@if (!FilteredApis.Any())
+{
+    <div style="margin-top: var(--am-space-5);">
+        <EmptyState Title="No APIs found" Description="Try changing your search or filter." ActionText="Clear filters" ActionHref="/apis" />
+    </div>
+}
+else
+{
+    <section class="am-panel" style="margin-top: var(--am-space-5);">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>URL</th>
+                    <th>Status</th>
+                    <th>Method</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var api in FilteredApis)
+                {
+                    <tr>
+                        <td>@api.Name</td>
+                        <td>@api.Url</td>
+                        <td><StatusBadge Status="@api.Status" /></td>
+                        <td>@api.Method</td>
+                        <td>
+                            <a class="am-topbar-btn" href="#">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+}
+
+@code {
+    private string? searchTerm;
+    private string statusFilter = "all";
+
+    private readonly List<ApiRow> apis =
+    [
+        new("Auth API", "https://api.example.com/auth/health", "Healthy", "GET"),
+        new("Orders API", "https://api.example.com/orders/health", "Slow", "GET"),
+        new("Billing API", "https://api.example.com/billing/health", "Down", "GET"),
+        new("Legacy API", "https://api.example.com/legacy/ping", "Disabled", "GET")
+    ];
+
+    private IEnumerable<ApiRow> FilteredApis => apis
+        .Where(x => string.IsNullOrWhiteSpace(searchTerm)
+            || x.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+            || x.Url.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+        .Where(x => statusFilter == "all" || x.Status.Equals(statusFilter, StringComparison.OrdinalIgnoreCase));
+
+    private Task OnSearchChanged(string? value)
+    {
+        searchTerm = value;
+        return Task.CompletedTask;
+    }
+
+    private sealed record ApiRow(string Name, string Url, string Status, string Method);
+}

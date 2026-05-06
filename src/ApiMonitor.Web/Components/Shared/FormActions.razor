@@ -1,0 +1,24 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<div class="am-form-actions">
+    @if (!string.IsNullOrWhiteSpace(PrimaryText))
+    {
+        <button type="submit" class="am-state-action">@PrimaryText</button>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(SecondaryText))
+    {
+        <button type="button" class="am-topbar-btn" @onclick="OnSecondary">@SecondaryText</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string PrimaryText { get; set; } = "Save";
+
+    [Parameter]
+    public string SecondaryText { get; set; } = "Cancel";
+
+    [Parameter]
+    public EventCallback OnSecondary { get; set; }
+}

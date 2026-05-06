@@ -1,0 +1,25 @@
+@namespace ApiMonitor.Web.Components.Shared
+
+<section class="am-state-card am-error-state" role="alert">
+    <h2>@Title</h2>
+    <p>@Description</p>
+
+    @if (!string.IsNullOrWhiteSpace(RetryText) && OnRetry.HasDelegate)
+    {
+        <button type="button" class="am-state-action" @onclick="OnRetry">@RetryText</button>
+    }
+</section>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Something went wrong";
+
+    [Parameter]
+    public string Description { get; set; } = "Please try again.";
+
+    [Parameter]
+    public string RetryText { get; set; } = "Retry";
+
+    [Parameter]
+    public EventCallback OnRetry { get; set; }
+}
